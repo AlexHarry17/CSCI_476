@@ -20,14 +20,17 @@ public class Main {
             }
         }
         for (String t : tracks) {
-            unencryptedInfo = getCardInfo(t, unencryptedInfo);
+            unencryptedInfo = getCardInfo(t, unencryptedInfo); // Valid unencrypted info is added to the list.
         }
         if (!unencryptedInfo.isEmpty()) {
-            printCardInfo(unencryptedInfo);
+            printCardInfo(unencryptedInfo); //Prints if unencrypted info exists.
+        }
+        else {
+            System.out.println("All info is encrypted.");
         }
     }
 
-    private static ArrayList getCardInfo(String track, ArrayList<String> unencryptedInfo) { // Method to print card info.
+    private static ArrayList getCardInfo(String track, ArrayList<String> unencryptedInfo) { // Method to get card info.
 
         List<String> cardInfo = new ArrayList<>();
         StringTokenizer info = new StringTokenizer(track, "^");
@@ -37,15 +40,14 @@ public class Main {
         if (cardInfo.size() == 3) {
             String[] name_temp = cardInfo.get(1).split("/");    // Splits the string where the name is broken up by a "/"
             String name = name_temp[0] + name_temp[1];  // Concatenates the name string.
-            String cardNum = cardInfo.get(0).substring(1);
+            String cardNum = cardInfo.get(0).substring(1);  // Gets the card info from the string.
             String cardNum_spaced = "";
             for (int i = 0; i < cardNum.length(); i += 4) { // Adds spaces to the credit card number to help with readability.
                 cardNum_spaced += cardNum.substring(i, i + 4) + " ";
             }
-            String expirationDate = cardInfo.get(2).substring(2, 4) + "/20" + cardInfo.get(2).substring(0, 2);
-            String cvc = cardInfo.get(2).substring(4, 7);
-//            System.out.println("Cardholder’s Name: : " + name + "\n" + "Card Number: " + cardNum_spaced + "\n" + "Expiration Date: " + expirationDate + "\nCVC Number: " + cvc + "\n");
-            if (!unencryptedInfo.isEmpty()) {
+            String expirationDate = cardInfo.get(2).substring(2, 4) + "/20" + cardInfo.get(2).substring(0, 2); // Gets expiration date from string.
+            String cvc = cardInfo.get(2).substring(4, 7);   //Gets cvc info from string.
+            if (!unencryptedInfo.isEmpty()) {   // Adds unencrypted info string to list.
                 unencryptedInfo.add("Cardholder’s Name: : " + name + "\n" + "Card Number: " + cardNum_spaced + "\n" + "Expiration Date: " + expirationDate + "\nCVC Number: " + cvc + "\n");
             } else {
                 unencryptedInfo.add("Cardholder’s Name: : " + name + "\n" + "Card Number: " + cardNum_spaced + "\n" + "Expiration Date: " + expirationDate + "\nCVC Number: " + cvc + "\n");
@@ -54,7 +56,7 @@ public class Main {
         return unencryptedInfo;
     }
 
-    private static void printCardInfo(ArrayList<String> unencryptedInfo) {
+    private static void printCardInfo(ArrayList<String> unencryptedInfo) {  // Method to print card info.
         Map<Integer, String> number_endings = Map.of( //Dictionary to make our print statement grammatically correct for values less than 8.
                 1, "st",
                 2, "nd",
