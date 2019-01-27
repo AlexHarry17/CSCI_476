@@ -14,9 +14,9 @@ public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader input = new BufferedReader(new FileReader("/home/alex/Documents/Montana State/2019/Spring/CSCI_476/Assignment_2/memorydump.dmp"));   // Reads in .dmp file.
         String st = "";
-        String current = "";
-        while((current = input.readLine()) != null) { // Loops through the file lines.  Appends each line into one string "st".
-            st += current;
+        String current;
+        while((current = input.readLine()) != null) {
+            st += current;         // Loops through the file lines.  Appends each line into one string "st".
         }
         StringTokenizer mt = new StringTokenizer(st, "%?;");
         List<String> tracks = new ArrayList<>();
@@ -29,9 +29,8 @@ public class Main {
                 tracks.add(track);
             }
         }
-        for (String t : tracks) {
+        for (String t : tracks)
             unencryptedInfo = getCardInfo(t, unencryptedInfo); // Valid unencrypted info is added to the list.
-        }
         if (!unencryptedInfo.isEmpty()) {
             printCardInfo(unencryptedInfo); //Prints if unencrypted info exists.
         } else {
@@ -56,7 +55,7 @@ public class Main {
             }
             String expirationDate = cardInfo.get(2).substring(2, 4) + "/20" + cardInfo.get(2).substring(0, 2); // Gets expiration date from string.
             String cvc = cardInfo.get(2).substring(4, 7);   //Gets cvc info from string.
-            unencryptedInfo.add("Cardholder’s Name: : " + name + "\n" + "Card Number: " + cardNum_spaced + "\n" + "Expiration Date: " + expirationDate + "\nCVC Number: " + cvc + "\n");
+            unencryptedInfo.add("Cardholder’s Name: " + name + "\n" + "Card Number: " + cardNum_spaced + "\n" + "Expiration Date: " + expirationDate + "\nCVC Number: " + cvc + "\n");
 
         }
         return unencryptedInfo;
