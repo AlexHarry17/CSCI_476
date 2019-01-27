@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.StringTokenizer;
 
 public class Main {
@@ -19,23 +20,40 @@ public class Main {
         int count = 1;
         System.out.println("There are " + (tracks.size() - 1) + " track I record's in the memory data");
         for (String t : tracks) {
-            printCardInfo(t, count);
+            count = printCardInfo(t, count);
         }
     }
 
-    private static void printCardInfo(String track, int count) {
+    private static int printCardInfo(String track, int count) { // Method to print card info.
+        Map<Integer, String> number_endings = Map.of( //Dictionary to make our print statement grammatically correct for values less than 8.
+                1, "st",
+                2, "nd",
+                3, "rd",
+                4, "th",
+                5, "th",
+                6, "th",
+                7, "th",
+                8, "th"
+        );
         List<String> cardInfo = new ArrayList<>();
         StringTokenizer info = new StringTokenizer(track, "^");
         while (info.hasMoreTokens()) {
             cardInfo.add(info.nextToken());
         }
         if (cardInfo.size() == 3) {
-            System.out.println("<Information of the record>");
-            String name = cardInfo.get(1);
+            System.out.println("<Information of the " + count + number_endings.get(count) + " record>");
+            String[] name_temp = cardInfo.get(1).split("/");    // Splits the string where the name is broken up by a "/"
+            String name = name_temp[0] + name_temp[1];  // Concatenates the name string.
             String cardNum = cardInfo.get(0).substring(1);
+            String cardNum_spaced = "";
+            for (int i = 0; i < cardNum.length(); i += 4) { // Adds spaces to the credit card number to help with readability.
+                cardNum_spaced += cardNum.substring(i, i + 4) + " ";
+            }
             String expirationDate = cardInfo.get(2).substring(2, 4) + "/20" + cardInfo.get(2).substring(0, 2);
             String cvc = cardInfo.get(2).substring(4, 7);
-            System.out.println("Cardholder’s Name: : " + name + "\n" + "Card Number: " + cardNum + "\n" + "Expiration Date: " + expirationDate + "\nCVC Number: " + cvc + "\n");
+            System.out.println("Cardholder’s Name: : " + name + "\n" + "Card Number: " + cardNum_spaced + "\n" + "Expiration Date: " + expirationDate + "\nCVC Number: " + cvc + "\n");
+            count += 1;
         }
+        return count;
     }
 }
