@@ -56,7 +56,6 @@ public class Main {
             String expirationDate = cardInfo.get(2).substring(2, 4) + "/20" + cardInfo.get(2).substring(0, 2); // Gets expiration date from string.
             String cvc = cardInfo.get(2).substring(4, 7);   //Gets cvc info from string.
             unencryptedInfo.add("Cardholder’s Name: " + name + "\n" + "Card Number: " + cardNum_spaced + "\n" + "Expiration Date: " + expirationDate + "\nCVC Number: " + cvc + "\n");
-
         }
         return unencryptedInfo;
     }
