@@ -71,7 +71,7 @@ public class Main {
                 7, "th",
                 8, "th"
         );
-        System.out.println("There are " + unencryptedInfo.size() + " track I record's in the memory data");
+        System.out.println("There are " + unencryptedInfo.size() + " track I record's in the memory data"); // Prints info.
         for (int i = 0; i < unencryptedInfo.size(); i++) {
             System.out.println("<Information of the " + (i + 1) + number_endings.get(i + 1) + " record>");
             System.out.println(unencryptedInfo.get(i));
