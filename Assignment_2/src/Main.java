@@ -12,7 +12,7 @@ import java.util.StringTokenizer;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        BufferedReader input = new BufferedReader(new FileReader("../memorydump.dmp"));   // Reads in .dmp file.
+        BufferedReader input = new BufferedReader(new FileReader("/home/alex/Documents/Montana State/2019/Spring/CSCI_476/Assignment_2/memorydump.dmp"));   // Reads in .dmp file.
         String st = "";
         String current;
         while((current = input.readLine()) != null) {
