@@ -12,7 +12,7 @@ import java.util.StringTokenizer;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        BufferedReader input = new BufferedReader(new FileReader("/home/alex/Documents/Montana State/2019/Spring/CSCI_476/Assignment_2/memorydump.dmp"));   // Reads in .dmp file.
+        BufferedReader input = new BufferedReader(new FileReader("../memorydump.dmp"));   // Reads in .dmp file.
         String st = "";
         String current;
         while((current = input.readLine()) != null) {
@@ -38,7 +38,7 @@ public class Main {
         }
     }
 
-    private static ArrayList getCardInfo(String track, ArrayList<String> unencryptedInfo) { // Method to get card info.
+    private static ArrayList<String> getCardInfo(String track, ArrayList<String> unencryptedInfo) { // Method to get card info.
 
         List<String> cardInfo = new ArrayList<>();
         StringTokenizer info = new StringTokenizer(track, "^");
