@@ -30,7 +30,7 @@ public class Main {
             }
         }
         for (String t : tracks)
-            unencryptedInfo = getCardInfo(t, unencryptedInfo); // Valid unencrypted info is added to the string.
+            unencryptedInfo = getCardInfo(t, unencryptedInfo); // Valid unencrypted info is added to the list.
         if (!unencryptedInfo.isEmpty()) {
             printCardInfo(unencryptedInfo); //Prints if unencrypted info exists.
         } else {
