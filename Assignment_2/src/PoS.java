@@ -1,7 +1,8 @@
 /*
-Alexander Harry
-Keely Weisbeck
-Nate Tranel
+ * CSCI 476 Assignment 2
+ * Alexander Harry
+ * Nate Tranel
+ * Keely Weisbeck
  */
 
 import java.io.*;
@@ -10,9 +11,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.StringTokenizer;
 
-public class Main {
+public class PoS {
     public static void main(String[] args) throws IOException {
-        BufferedReader input = new BufferedReader(new FileReader("../memorydump.dmp"));   // Reads in .dmp file.
+        BufferedReader input = new BufferedReader(new FileReader("../memorydump.dmp"));   // Reads in .dmp file. --ASSUMES .dmp FILE IS IN PARENT DIRECTORY--
         String st = "";
         String current;
         while((current = input.readLine()) != null) {
@@ -20,12 +21,11 @@ public class Main {
         }
         StringTokenizer mt = new StringTokenizer(st, "%?;");
         List<String> tracks = new ArrayList<>();
-        ArrayList<String> unencryptedInfo = new ArrayList<>();
+        ArrayList<String> unencryptedInfo = new ArrayList<String>();
 
-        while (mt.hasMoreTokens()) {
+        while (mt.hasMoreTokens()) {	//finds individual tracks for card
             String track = mt.nextToken();
             if (track.startsWith("B") && track.contains("^") && track.contains("/")) {
-                //System.out.println("MT " + track);
                 tracks.add(track);
             }
         }
@@ -38,7 +38,7 @@ public class Main {
         }
     }
 
-    private static ArrayList getCardInfo(String track, ArrayList<String> unencryptedInfo) { // Method to get card info.
+    private static ArrayList<String> getCardInfo(String track, ArrayList<String> unencryptedInfo) { // Method to get card info.
 
         List<String> cardInfo = new ArrayList<>();
         StringTokenizer info = new StringTokenizer(track, "^");
@@ -71,7 +71,7 @@ public class Main {
                 7, "th",
                 8, "th"
         );
-        System.out.println("There are " + unencryptedInfo.size() + " track I record's in the memory data"); // Prints info.
+        System.out.println("There are " + unencryptedInfo.size() + " track I records in the memory data"); // Prints info.
         for (int i = 0; i < unencryptedInfo.size(); i++) {
             System.out.println("<Information of the " + (i + 1) + number_endings.get(i + 1) + " record>");
             System.out.println(unencryptedInfo.get(i));
