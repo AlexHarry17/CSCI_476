@@ -2,11 +2,10 @@ CSCI 476: Computer Security
 Assignment 5
 Alex Harry, Nate Tranel, Keely Weisbeck
 
-I) The probability that Eve would succeed is (n/(2^20)), or (n/1048576). This means that if n = 2^20 (the total number of possible		-- CHECK WITH BIRTHDAY PARADOX FORMULA, THIS MAY BE WRONG
-ID numbers), then she would have 100% chance of success due to the Pigeon-hole Principle.
+I) The probability that Eve would succeed is calculated with the formula 1 - ((2^20)! / (((2^20)^n) * ((2^20) - n)!)), 
+since the ID is a 20-bit number and bits can either be of the value 0 or 1.
 
-II) For the probability to be at least 0.5, the value of n should be at least 1207 according to the Birthday Paradox.					-- ALSO MAY BE WRONG
-= 
+II) For the probability to be at least 0.5, the value of n should be at 
 
 III) Yes; the pseudo-random number generator would simply need a way to not repeat numbers generated. One way to do this
 would be to keep a list of generated numbers and if one was repeated just generate a new one until it is unique. However, 
