@@ -2,10 +2,13 @@ CSCI 476: Computer Security
 Assignment 5
 Alex Harry, Nate Tranel, Keely Weisbeck
 
-I) The probability that Eve would succeed is calculated with the formula 1 - ((2^20)! / (((2^20)^n) * ((2^20) - n)!)), 
-since the ID is a 20-bit number and bits can either be of the value 0 or 1.
+I) The probability that Eve would succeed is n/(2^20), since the ID is a 20-bit number.
 
-II) For the probability to be at least 0.5, the value of n should be at 
+II) For the probability to be at least 0.5, n would have to be at least 524287. This was calculated with
+a Python program containing the following function:
+
+def calc_prob(n):
+   return (n/(2^20))
 
 III) Yes; the pseudo-random number generator would simply need a way to not repeat numbers generated. One way to do this
 would be to keep a list of generated numbers and if one was repeated just generate a new one until it is unique. However, 
@@ -14,4 +17,8 @@ n is the number of random numbers the user wants generated, populate the array w
 in the array, and shuffle all the numbers around randomly. This would prevent collisions and guarantee a success for these
 query IDs in at most 2^20 tries. 
 
-IV) The smallest m that Eve could succeed with a probability of at least 0.5 would be  
+IV) The smallest m that Eve could succeed with a probability of at least 0.5, using the formula (1 - (m/(2^20)))^m, m would need to be 
+equal to be at least 853. This was calculated with a Python program containing the following function:
+
+def calc_prob(m):
+   return (1 - (m / (2 ** 20))) ** m
